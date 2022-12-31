@@ -1,0 +1,53 @@
+celery 
+celery -A tallykhata.celery worker --pool=solo -l info /for solo pool with one worker
+celery -A tallykhata.celery worker -l info             /for default
+celery -A tallykhata.celery worker -l info  --pool=prefork --concurrency=5 --autoscale=10,3 -l info   //in details
+celery -A tallykhata.celery worker -l info  --pool=threads --concurrency=5 --autoscale=10,3 -l info   //for using thread
+celery -A tallykhata.celery worker -l info  --pool=prefork --concurrency=5 --autoscale=10,3 -l info -Q tk_queue_send_notification
+celery -A tallykhata.celery worker -Q tk_queue_send_notification,tk_queue_receiver,tk_queue_track_uninstall,tk_queue_tallypay_txn,tk_queue_send_dynamic_form_notification
+
+multiple queue
+celery --app=tallykhata worker -Q tk_queue_send_notification -c 2
+celery --app=tallykhata worker -Q tk_queue_receiver -c 2
+celery --app=tallykhata worker -Q tk_queue_track_uninstall -c 2
+celery --app=tallykhata worker -Q tk_queue_tallypay_txn -c 2
+celery --app=tallykhata worker -Q tk_queue_send_dynamic_form_notification -c 2
+
+
+
+
+
+
+celery beat
+celery -A tallykhata.celery beat -l INFO 
+
+
+
+flower
+celery -A tallykhata.celery flower --address=127.0.0.0 --port=5555
+
+
+
+
+
+
+
+celery -A djangito.celeryapp:app  worker -Q default -n djangito.%%h --without-gossip --without-mingle --without-heartbeat --loglevel=INFO --max-memory-per-child=512000 --concurrency=1
+   
+https://gist.github.com/neara/11214948
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//priyanshu
+//https://github.com/priyanshu2015/celery-with-django

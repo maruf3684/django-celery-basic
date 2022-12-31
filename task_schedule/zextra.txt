@@ -1,0 +1,35 @@
+celery 
+celery -A task_schedule.celery worker --pool=solo -l info
+celery -A task_schedule.celery worker -l info
+
+celery beat
+celery -A task_schedule beat -l INFO 
+
+flower:
+celery -A task_schedule flower  --address=127.0.0.0 --port=5555
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//priyanshu
+//https://github.com/priyanshu2015/celery-with-django
